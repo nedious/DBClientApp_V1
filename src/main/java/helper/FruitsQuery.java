@@ -1,6 +1,7 @@
 package helper;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public abstract class FruitsQuery {
@@ -66,5 +67,56 @@ public abstract class FruitsQuery {
         ps.setInt(2, fruitId);
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
+    }
+
+    // delete method
+    public static int delete(int fruitId) throws SQLException {
+        // the delete method will accept the id of the record you want to delete (in this case fruitId)
+
+        String sql = "DELETE FROM FRUITS WHERE FRUIT_ID = ?";
+        // this will delete from FRUITS where FRUIT_ID = the bind variable ?
+
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setInt(1, fruitId);
+        // there is only bind variable, so index is 1, and the fruitId parameter
+
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected;
+    }
+
+    public static void select() throws SQLException {
+        // declared void because I don't plan to have it return anything
+
+        String sql = "SELECT * FROM FRUITS";
+        // SQL statement, with variable 'sql'
+        // * means select ALL
+
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        // to create the ResultSet we use the executeQuery() method. This will create a ResultSet (the 2dimensional list)
+
+        while(rs.next()){
+            // inside of the while loop header, we will call the next() method
+            // the next() method moves the ResultSet cursor through the ResultSet list, it returns true if there is data in
+            // the set, and false if there is no data in the set
+            // provided we have data in our rs.next(), we can go through the data, in this case we will get the column data for the resultSet
+            // we are running through records from the FRUITS table
+
+            int fruitId = rs.getInt("Fruit_ID");
+            // variables to represent the columns in the FRUITS Table
+            // fruitId = ResultSet Getter (rs.getInt) and use the ResultSet reference for this
+            // rs.getInt ResultSet we are getting the integer from the Fruit_ID label because that's the SQL type
+            // rs.getInt("Fruit_ID") will retrieve the data from the REsultSET the Fruit_ID and assign it to variable fruitId
+
+            String fruitName = rs.getString("Fruit_Name");
+            // lets go get the fruit_Name column data
+
+            System.out.print(fruitId + " | ");
+            // display the results
+            System.out.print(fruitName + "\n");
+            // print fruitName and a linebreak
+
+        }
+
     }
 }
