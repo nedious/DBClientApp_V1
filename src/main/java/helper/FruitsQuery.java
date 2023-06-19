@@ -50,4 +50,21 @@ public abstract class FruitsQuery {
 
         return rowsAffected;
     }
+
+    public static int update(int fruitId, String fruitName) throws SQLException {
+        // write a method that does our update
+        // what we are updating is the name of the fruit but we will need the id of the fruit so we can find and update it.
+        // 2 parameters are needed: fruitId, fruitName
+
+        String sql = "UPDATE FRUITS SET Fruit_Name = ? WHERE Fruit_ID = ?";
+        // update statement: UPDATE tableYouWantUpdate SET specifyColumnYouWantUpdated = ?BindVar WHERE Fruit_ID = ?BindVar
+        // we want to update a column (Fruit_Name) with a value (?) WHERE Fruit_Name's primary key (Fruit_ID) is set to the value we pass (?)
+        // Fruit_Name bind Variable ? will take the fruitName, and Fruit_ID bind variable ? will take the fruitId
+
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setString(1, fruitName);
+        ps.setInt(2, fruitId);
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected;
+    }
 }

@@ -29,43 +29,27 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         JDBC.openConnection();
 
-        int rowsAffected = FruitsQuery.insert("cherries", 1);
-        // try the insert
+        int rowsAffected = FruitsQuery.update(7, "Pear");
+        // FruitsQuery.insert and FruitsQuery.insert
+        // the FruitsQuery.insert takes (fruitName, colorId)
         // when it gets called, it will return the insert and it will return the number of rows that was affected by the insert
         // we can confirm if our insert was successful
+        // the FruitsQuery.update takes (fruitId, fruitName)
+        // FruitsQuery.update will call the update method
+
 
         if(rowsAffected > 0){
-            System.out.println("Insert Successful");
+            System.out.println("Update Successful");
+            // when performing INSERT: "Insert Successful"
+            // when performing UPDATE: "Update Successful"
         }
         else{
             System.out.println("Insert FAILED");
+            // when performing INSERT: "Insert FAILED"
+            // when performing UPDATE: "Update FAILED"
         }
 
         //launch();
         JDBC.closeConnection();
     }
 }
-
-
-
-
-
-
-/**
- * ----------------------------------------------------------------
- * import javafx.application.Application;
- * import javafx.fxml.FXMLLoader;
- * import javafx.scene.Scene;
- * import javafx.stage.Stage;
- *
- * import java.io.IOException;
- *
- * public class MainTest {
- *
- *     public static void main(String[] args) {
- *         System.out.println("Hello World from VM");
- *         JDBC.openConnection();
- *         JDBC.closeConnection();
- *     }
- * }
- */
