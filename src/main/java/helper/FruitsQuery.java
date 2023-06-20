@@ -4,6 +4,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/** to drop nutrition tables
+ * USE client_schedule;
+ * DROP TABLE IF EXISTS FRUITS, COLORS;
+ * */
+
 public abstract class FruitsQuery {
 // abstract class to take care of running operations on the SQL Fruits table
 
@@ -115,8 +120,47 @@ public abstract class FruitsQuery {
             // display the results
             System.out.print(fruitName + "\n");
             // print fruitName and a linebreak
-
         }
+    }
 
+    // use a bind Variable with the select statement. you may have a situation where you have records that you want to match to a certain condition
+    public static void select(int colorId) throws SQLException {
+        // this creates an overloaded select statement, this one will accept an ID
+        // purpose is to select all the fruits that have a particular colorID
+
+        String sql = "SELECT * FROM FRUITS WHERE Color_ID = ?";
+        // SELECT all FROM FRUITS WHERE Color_IDcolumn = ?BindVariable
+
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setInt(1, colorId);
+        // because we are using a bind Variable, we want to use a setter to assign a value to the bind variable
+        // only 1 bind variable so parameter index is 1, and the colorId parameter.
+
+        ResultSet rs = ps.executeQuery();
+        // to create the ResultSet we use the executeQuery() method. This will create a ResultSet (the 2dimensional list)
+
+        while(rs.next()){
+            // inside of the while loop header, we will call the next() method
+            // the next() method moves the ResultSet cursor through the ResultSet list, it returns true if there is data in
+            // the set, and false if there is no data in the set
+            // provided we have data in our rs.next(), we can go through the data, in this case we will get the column data for
+            // the resultSet we are running through records from the FRUITS table
+
+            int fruitId = rs.getInt("Fruit_ID");
+            // variables to represent the columns in the FRUITS Table
+            // fruitId = ResultSet Getter (rs.getInt) and use the ResultSet reference for this
+            // rs.getInt ResultSet we are getting the integer from the Fruit_ID label because that's the SQL type
+            // rs.getInt("Fruit_ID") will retrieve the data from the REsultSET the Fruit_ID and assign it to variable fruitId
+
+            String fruitName = rs.getString("Fruit_Name");
+            // goes to get the fruit_Name column data
+
+            int colorIdFK = rs.getInt("Color_ID");
+            // goes to get the colorIdForeignKey(FK) column data
+
+            System.out.print(fruitId + " | ");
+            System.out.print(fruitName + " | ");
+            System.out.print(colorIdFK + "\n");
+        }
     }
 }

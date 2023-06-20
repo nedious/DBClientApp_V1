@@ -56,8 +56,11 @@ public class Main {
          }
          */
 
-        FruitsQuery.select();
+        FruitsQuery.select(3);
+        // if you want to call the 'select() overload' then call FruitsQuery.select(andEnterIntColorIdNumYouWantToSee);
 
+        //FruitsQuery.select();
+        // select
 
         //launch();
         JDBC.closeConnection();
