@@ -48,7 +48,10 @@ public class LoginController implements Initializable {
     @FXML private MenuItem loginLanguageEnglish;    // English (default) for login form
     @FXML private MenuItem loginLanguageFrench;     // select French for login form
 
-    //Class 'LoginController' must either be declared abstract or implement abstract method 'initialize(URL, ResourceBundle)' in 'Initializable'
+    /**
+     * Method: initialize.
+     * Class 'LoginController' must either be declared abstract or implement abstract method 'initialize(URL, ResourceBundle)' in 'Initializable'
+     * */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -136,16 +139,6 @@ public class LoginController implements Initializable {
     }
 
 
-//
-//    /**
-//     * Exit button, on click closes program
-//     * @param event
-//     */
-//    public void exitButtonAction(ActionEvent event) {
-//        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-//        stage.close();
-//    }
-//
 //
 //
 //    /**
