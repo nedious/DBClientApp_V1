@@ -7,7 +7,9 @@ public class Alert {
      *
      * @param alertType Alert message selector.
      */
-    private void displayAlert(int alertType) {
+
+//     Alert.displayAlert(1);
+    public static void displayAlert(int alertType) {
 
         javafx.scene.control.Alert alert = new javafx.scene.control.Alert(javafx.scene.control.Alert.AlertType.ERROR);
 

@@ -34,33 +34,34 @@ public class UserDaoImpl {
         return null;
     }
 
-    /**
-     * Confirm the user for login
-     * @param user
-     * @param password
-     * @return
-     */
-    public static int validateLogin (String user, String password){
-        try {
-            String sqlSelect = "SELECT * FROM users WHERE user_name = '" + user + "' AND password = '" + password +"'";
-            PreparedStatement preparedStatement = JDBC.getConnection().prepareStatement(sqlSelect);
-            ResultSet resultSet = preparedStatement.executeQuery();
 
-            if(resultSet.next()) {
-                if (
-                        (resultSet.getString("User_Name").equals(user))
-                        &&
-                        (resultSet.getString("Password").equals(password))
-                ) {
-                        return resultSet.getInt("User_ID");
-                }
+    /**
+      * Method: validateLogin. From login screen, take username and user password, make into string, create prepared statement, generate resultSet if prepared Statement is successful and test if true
+      * @param userName from login user text field
+      * @param password from login user password field
+      * @return boolean
+      */
+    public static Boolean validateLogin(String userName, String password) throws SQLException {
+        String sqlSelect = "SELECT * FROM users WHERE user_name = '" + userName + "' AND password = '" + password +"'";     // sql string for query
+//        System.out.println("sqlSelect: " + sqlSelect);
+        PreparedStatement preparedStatement = JDBC.getConnection().prepareStatement(sqlSelect);     // make database connection, pass prepareStatement()
+//        System.out.println("preparedStatement: " + preparedStatement);
+        ResultSet resultSet = preparedStatement.executeQuery();         // result set of query from database *if prepared statement returns any results
+
+        try {
+            if(resultSet.next()){           // the next() method moves the ResultSet cursor down
+                System.out.println("successful login attempt");
+                return true;
+            } else {
+                return false;
             }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+            return false;
         }
-        catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return -1;
     }
+
+
 
     /**
      * Gets all user data

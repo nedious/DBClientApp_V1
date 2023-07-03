@@ -15,7 +15,7 @@ public class DBConnection {
     private static final String password="Passw0rd!";
     static Connection conn;
     public static void makeConnection() throws ClassNotFoundException, SQLException, Exception{
-        conn=(Connection) DriverManager.getConnection(DB_URL,username,password);
+        conn = DriverManager.getConnection(DB_URL,username,password);
     }
     public static void closeConnection() throws ClassNotFoundException,SQLException, Exception{
         conn.close();
