@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
+/**
+ * Class DBConnection: creates a connection to MySQL database
+ * */
 public class DBConnection {
     private static final String databaseName="client_schedule";
     private static final String DB_URL="jdbc:mysql://localhost:3306/"+databaseName;

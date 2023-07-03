@@ -1,9 +1,11 @@
 package DAO;
 
+import helper.JDBC;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.User;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -31,6 +33,40 @@ public class UserDaoImpl {
         DBConnection.closeConnection();
         return null;
     }
+
+    /**
+     * Confirm the user for login
+     * @param user
+     * @param password
+     * @return
+     */
+    public static int validateLogin (String user, String password){
+        try {
+            String sqlSelect = "SELECT * FROM users WHERE user_name = '" + user + "' AND password = '" + password +"'";
+            PreparedStatement preparedStatement = JDBC.getConnection().prepareStatement(sqlSelect);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()) {
+                if (
+                        (resultSet.getString("User_Name").equals(user))
+                        &&
+                        (resultSet.getString("Password").equals(password))
+                ) {
+                        return resultSet.getInt("User_ID");
+                }
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+    /**
+     * Gets all user data
+     * @return allUsers
+     * @throws SQLException
+     */
     public static ObservableList<User> getAllUsers() throws SQLException, Exception{
         ObservableList<User> allUsers= FXCollections.observableArrayList();
         DBConnection.makeConnection();
@@ -39,9 +75,9 @@ public class UserDaoImpl {
         ResultSet result=Query.getResult();
         while(result.next()){
             int userid=result.getInt("User_ID");
-            String userNameG=result.getString("User_Name");
+            String userName=result.getString("User_Name");
             String password=result.getString("Password");
-            User userResult= new User(userid, userNameG, password);
+            User userResult= new User(userid, userName, password);
             allUsers.add(userResult);
 
         }

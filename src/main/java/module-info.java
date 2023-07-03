@@ -8,4 +8,6 @@ module imhoff.dbclientappv1 {
     exports imhoff.dbclientappv1;
     exports controller;
     opens controller to javafx.fxml;
+
+    opens model to javafx.base;
 }

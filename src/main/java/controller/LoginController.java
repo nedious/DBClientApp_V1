@@ -44,28 +44,13 @@ public class LoginController implements Initializable {
             // if username || password is blank (true), then true != false -> go to else
             loginErrorMessageLabel.setText("Loading ...");
 
-            validateLogin();
+//            validateLogin();
 
         } else {
             loginErrorMessageLabel.setText("Please enter Username and Password");
         }
     }
 
-public void validateLogin(){
-
-        String verifyLogin = "SELECT * FROM client_schedule.users WHERE User_Name = '"
-            + loginUsernameTextField.getText()
-            + "' AND Password = '"
-            + loginPasswordField.getText()
-            + "'";
-
-    try {
-//        Statement statement =
-    } catch (Exception e) {
-
-    }
-
-}
     /**
      * Method: loginCancelButtonOnAction exits application.
      *
