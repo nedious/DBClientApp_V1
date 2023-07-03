@@ -75,7 +75,6 @@ public class LoginController implements Initializable {
             String userName = loginUsernameTextField.getText();     // get username text
             String password = loginPasswordField.getText();     // get password field
 
-
             boolean validUser = UserDaoImpl.validateLogin(userName,password);      // use UserDaoImpl.validateLogin() method. returns true / false
 
             System.out.println("validUser: " + validUser);
@@ -85,7 +84,7 @@ public class LoginController implements Initializable {
 
             if (validUser) {
 //                FXMLLoader loader = new FXMLLoader();
-//                loader.setLocation(getClass().getResource("successful.fxml"));
+//                loader.setLocation(getClass().getResource("AppointmentsView.fxml"));
 //                Parent parent = loader.load();
 //                Stage stage = (Stage) loginLoginButton.getScene().getWindow();
 //                Scene scene = new Scene(parent);
@@ -114,12 +113,7 @@ public class LoginController implements Initializable {
 //                    System.out.println("There is not a scheduled appointment.");
 //                }
             } else {
-//                Alert alert = new Alert(Alert.AlertType.ERROR);
-//                alert.setTitle(resourceBundle.getString("errorTitle"));
-//                alert.setContentText(resourceBundle.getString("errorText"));
-//                alert.show();
-
-                Alert.displayAlert(1);       // displays alert. Inherited from Alert class in helper.
+                Alert.displayAlert(1);       // Alert: Invalid Values. Inherited from helper.Alert.
 
                 printOutput.print("Invalid login for: '" + userName + "' at: " + Timestamp.valueOf(LocalDateTime.now()) + "\n");  // write to loginReport object
             }

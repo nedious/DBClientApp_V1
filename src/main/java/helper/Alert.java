@@ -18,14 +18,14 @@ public class Alert {
 // --------------------- login errors --------------------- //
             case 1:
                 alert.setTitle("Error");
-                alert.setHeaderText("Error Modifying Part");
-                alert.setContentText("Form contains blank fields or invalid values.");
+                alert.setHeaderText("Invalid values");
+                alert.setContentText("Username or Password is invalid.");
                 alert.showAndWait();
                 break;
             case 2:
                 alert.setTitle("Error");
-                alert.setHeaderText("Invalid value for Machine ID");
-                alert.setContentText("Machine ID may only contain numbers.");
+                alert.setHeaderText("Problem");
+                alert.setContentText("Problem description");
                 alert.showAndWait();
                 break;
             case 3:

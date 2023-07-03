@@ -1,17 +1,19 @@
 //for reference use this link or search for github tutorial: https://www.youtube.com/watch?v=RGOj5yH7evk
 
-cd (folder_name)                    //change directory within folder:
-git status                          //status of git: this shows all files updated or deleted but haven't been saved in a commit yet
-git commit -am                      //short hand: you need to do 'git add' then 'git commit' to commit, so a short hand is '-am' = "a stands for add, m stands for message"
-git branch                          //investigating branches: 'git branch' will result in *branchName (ie '* main' telling you are in the main branch)
-git checkout -b newFileName         //create a NEW branch: 'get checkout' is used to switch between branches. adding '-b newFileName' creates a new branch
+cd (folder_name)                    // change directory within folder:
+git status                          // status of git: this shows all files updated or deleted but haven't been saved in a commit yet
+git commit -am                      // short hand: you need to do 'git add' then 'git commit' to commit, so a short hand is '-am' = "a stands for add, m stands for message"
+git branch                          // investigating branches: 'git branch' will result in *branchName (ie '* main' telling you are in the main branch)
+git checkout -b newFileName         // create a NEW branch: 'get checkout' is used to switch between branches. adding '-b newFileName' creates a new branch
 git branch -d branchName            // deleting branches: '-d' = delete
-git checkout branchName             //switch between branches
+git checkout branchName             // switch between branches
+        * to MERGE branch to master, must go to github
 git diff branchName                 // what are the differences between branches? use 'git diff' to compare two versions and lines of code changed
-git merge mainBranchName            //frequently adding the master branch to your local file is wise
-git push origin master              //Make commit live by Push. origin = location of git repository. master = name of branch
+git merge mainBranchName            // frequently adding the master branch to your local file is wise
+git push origin master              // Make commit live by Push. origin = location of git repository. master = name of branch
 git log                             // log of your actions
 git clone (paste repository https)        //to clone repository
+clear                               // clears terminal window
 
 ls -la
         // are you in a git repository? lets find out: (will reveal hidden folders)
