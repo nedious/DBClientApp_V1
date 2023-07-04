@@ -18,10 +18,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Locale;
-import java.util.MissingResourceException;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -31,6 +28,7 @@ import helper.Alert;
 /**
  * Class: LoginController: 1) validates login credentials, 2)
  * */
+//Class 'LoginController' must either be declared abstract or implement abstract method 'initialize(URL, ResourceBundle)' in 'Initializable'
 public class LoginController implements Initializable {
 
     @FXML private Label loginSecureLoginLabel;      // secure login label
@@ -51,13 +49,6 @@ public class LoginController implements Initializable {
     @FXML private SplitMenuButton loginLanguageMenu; // menu button for English/French
     @FXML private MenuItem loginLanguageEnglish;    // English (default) for login form
     @FXML private MenuItem loginLanguageFrench;     // select French for login form
-
-    //Class 'LoginController' must either be declared abstract or implement abstract method 'initialize(URL, ResourceBundle)' in 'Initializable'
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-    }
-
 
     /**
      * Login button, on click confirms user and if valid enters program
@@ -88,13 +79,14 @@ public class LoginController implements Initializable {
             PrintWriter printOutput = new PrintWriter(loginReport);                                 // writes output to loginReport file
 
             if (validUser) {
-//                FXMLLoader loader = new FXMLLoader();
-//                loader.setLocation(getClass().getResource("AppointmentsView.fxml"));
-//                Parent parent = loader.load();
-//                Stage stage = (Stage) loginLoginButton.getScene().getWindow();
-//                Scene scene = new Scene(parent);
-//                stage.setScene(scene);
-//                stage.show();
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(getClass().getResource("/imhoff/dbclientappv1/sample.fxml"));
+                Parent parent = loader.load();
+                Stage stage = (Stage) loginLoginButton.getScene().getWindow();
+                Scene scene = new Scene(parent);
+                stage.setScene(scene);
+                stage.show();
+
 
                 System.out.println("validUser: " + validUser);
                 printOutput.print("Valid login for: '" + userName + "' at: " + Timestamp.valueOf(LocalDateTime.now()) + "\n"); // write to loginReport object
@@ -129,25 +121,25 @@ public class LoginController implements Initializable {
         }
     }
 
-    @FXML public void initialize() {
-        System.out.println(ZoneId.systemDefault());
-
-        // Create a formatter to format the time
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-
-        // Get the current date and time
-        LocalDateTime now = LocalDateTime.now();
-
-        // Get the system default time zone
-        ZoneId zoneId = ZoneId.systemDefault();
-
-        // Format the time and time zone
-        String formattedTime = now.format(formatter);
-        String timeZone = zoneId.toString();
-
-        // Update the label text with the current time and time zone
-        loginTimeZoneDynamicUpdate.setText("Time: " + formattedTime + " | Time Zone: " + timeZone);
-    }
+//    @FXML public void initialize() {
+//        System.out.println(ZoneId.systemDefault());
+//
+//        // Create a formatter to format the time
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+//
+//        // Get the current date and time
+//        LocalDateTime now = LocalDateTime.now();
+//
+//        // Get the system default time zone
+//        ZoneId zoneId = ZoneId.systemDefault();
+//
+//        // Format the time and time zone
+//        String formattedTime = now.format(formatter);
+//        String timeZone = zoneId.toString();
+//
+//        // Update the label text with the current time and time zone
+//        loginTimeZoneDynamicUpdate.setText("Time: " + formattedTime + " | Time Zone: " + timeZone);
+//    }
 
 
     /**
@@ -176,23 +168,43 @@ public class LoginController implements Initializable {
 //    /**
 //     * Initialize login screen
 //     * @param url
-//     * @param resourceBundle
+//     * @param resourceBundle for translating to French
 //     */
-//    @Override public void initialize(URL url, ResourceBundle resourceBundle) {
+    @Override public void initialize(URL url, ResourceBundle resourceBundle) {}
 //        try {
 //            Locale locale = Locale.getDefault();
 //            Locale.setDefault(locale);
 //            ZoneId zoneId = ZoneId.systemDefault();
 //            loginLocation.setText(String.valueOf(zoneId));
+
+//            Locale french = new Locale("fr", "FR");
 //
-//            resourceBundle = ResourceBundle.getBundle("Languages/login", Locale.getDefault());
-//            loginSecureLoginLabel.setText(resourceBundle.getString("login"));
-//            loginUsernameLabel.setText(resourceBundle.getString("username"));
+//            Scanner keyboard = new Scanner (System.in);
+//            System.out.println("enter a language (fr): ");
+//            String languageCode = keyboard.nextLine();
+//
+//            if (languageCode.equals("fr")){
+//                Locale.setDefault(french);
+//            } else {
+//                System.out.println("language not suppported ");
+//                System.exit(0);
+//            }
+//
+//            ResourceBundle rb = ResourceBundle.getBundle("helper/Translate_fr",Locale.getDefault());
+//
+//            System.out.println(rb.getString("Password"));
+//
+//            if (Locale.getDefault().getLanguage().equals("fr")){
+//                System.out.println(rb.getString("Password"));
+//            }
+
+//            loginLabel.setText(resourceBundle.getString("login"));
+//            usernameLabel.setText(resourceBundle.getString("username"));
 //            passwordLabel.setText(resourceBundle.getString("password"));
-//            loginLoginButton.setText(resourceBundle.getString("loginButton"));
-//            loginExitButton.setText(resourceBundle.getString("exitButton"));
-//            loginTimeZoneLabel.setText(resourceBundle.getString("location"));
-//
+//            loginButton.setText(resourceBundle.getString("loginButton"));
+//            exitButton.setText(resourceBundle.getString("exitButton"));
+//            locationLabel.setText(resourceBundle.getString("location"));
+
 //        }catch (MissingResourceException e) {
 //            System.out.println("Resource Bundle missing: " + e);
 //        } catch (Exception e) {
@@ -200,9 +212,6 @@ public class LoginController implements Initializable {
 //        }
 //
 //    }
-
-
-
 }
 
 
