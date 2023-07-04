@@ -1,6 +1,7 @@
 package controller;
 
 import DAO.UserDaoImpl;
+import helper.Translator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitMenuButton;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,10 +23,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Locale;
-import java.util.MissingResourceException;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import helper.Alert;
 /**
@@ -44,9 +46,11 @@ public class LoginController implements Initializable {
     @FXML private Label loginTimeZoneDynamicUpdate; // dynamic local time zone
 
 // ----------- //
-    @FXML private SplitMenuButton loginLanguageMenu; // menu button for English/French
-    @FXML private MenuItem loginLanguageEnglish;    // English (default) for login form
-    @FXML private MenuItem loginLanguageFrench;     // select French for login form
+    @FXML private Label loginLanguageLabel;         // language label
+    @FXML private RadioButton loginEnglishRadio;    // English radio
+    @FXML private RadioButton loginFrenchRadio;     // French radio
+
+//    private Translator translator;                  // to translate login page
 
     /**
      * Method: initialize.
@@ -56,6 +60,25 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
+    @FXML
+    private void onLanguageSelectionChanged(ActionEvent event) {
+        if (loginEnglishRadio.isSelected()) {
+            applyTranslations(Translator.englishTranslations);
+        } else if (loginFrenchRadio.isSelected()) {
+            applyTranslations(Translator.frenchTranslations);
+        }
+    }
+
+    private void applyTranslations(Map<String, String> translations) {
+        // Update the text on LoginView.fxml using the translations map
+        loginSecureLoginLabel.setText(translations.get("loginSecureLoginLabel"));
+        loginUsernameLabel.setText(translations.get("loginUsernameLabel"));
+        loginPasswordLabel.setText(translations.get("passwordLabel"));
+        // TODO: add remaining loginView items
+
+    }
+
 
     /**
      * Login button, on click confirms user and if valid enters program

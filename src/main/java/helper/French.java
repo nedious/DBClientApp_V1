@@ -80,4 +80,32 @@
 //
 //
 
-
+//
+///**
+// * Initialize login screen
+// * @param url
+// * @param resourceBundle
+// */
+//
+//@Override
+//public void initialize(URL url, ResourceBundle resourceBundle) {
+//        try {
+//        Locale locale = Locale.getDefault();
+//        Locale.setDefault(locale);
+//        ZoneId zoneId = ZoneId.systemDefault();
+//        loginTimeZoneDynamicUpdate.setText(String.valueOf(zoneId));
+//
+//        resourceBundle = ResourceBundle.getBundle("Languages/login",Locale.getDefault());
+//        loginSecureLoginLabel.setText(resourceBundle.getString("login"));
+//        loginUsernameLabel.setText(resourceBundle.getString("username"));
+//        loginPasswordLabel.setText(resourceBundle.getString("password"));
+//        loginLoginButton.setText(resourceBundle.getString("loginButton"));
+//        loginExitButton.setText(resourceBundle.getString("exitButton"));
+//        loginTimeZoneLabel.setText(resourceBundle.getString("location"));
+//
+//        }catch (MissingResourceException e) {
+//        System.out.println("Missing Resource Bundle: " + e);
+//        } catch (Exception e) {
+//        System.out.println(e);
+//        }
+//        }
