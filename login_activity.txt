@@ -41,3 +41,10 @@ Valid login for: 'test' at: 2023-07-03 10:54:20.927767
 Invalid login for: '' at: 2023-07-03 18:56:25.477232
 Invalid login for: 'test' at: 2023-07-03 18:56:30.260339
 Valid login for: 'test' at: 2023-07-03 18:56:33.46516
+Invalid login for: '' at: 2023-07-03 19:34:37.61147
+Invalid login for: '' at: 2023-07-03 20:12:06.642768
+Valid login for: 'test' at: 2023-07-03 20:12:40.260483
+Valid login for: 'test' at: 2023-07-03 20:15:10.748125
+Invalid login for: '' at: 2023-07-03 20:17:02.893348
+Invalid login for: '' at: 2023-07-03 20:17:03.691348
+Valid login for: 'test' at: 2023-07-03 20:17:08.300569

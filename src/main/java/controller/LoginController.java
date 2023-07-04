@@ -23,6 +23,10 @@ import java.util.MissingResourceException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+
 import helper.Alert;
 /**
  * Class: LoginController: 1) validates login credentials, 2)
@@ -53,6 +57,7 @@ public class LoginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
+
 
     /**
      * Login button, on click confirms user and if valid enters program
@@ -122,6 +127,26 @@ public class LoginController implements Initializable {
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
+    }
+
+    @FXML public void initialize() {
+        System.out.println(ZoneId.systemDefault());
+
+        // Create a formatter to format the time
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+
+        // Get the current date and time
+        LocalDateTime now = LocalDateTime.now();
+
+        // Get the system default time zone
+        ZoneId zoneId = ZoneId.systemDefault();
+
+        // Format the time and time zone
+        String formattedTime = now.format(formatter);
+        String timeZone = zoneId.toString();
+
+        // Update the label text with the current time and time zone
+        loginTimeZoneDynamicUpdate.setText("Time: " + formattedTime + " | Time Zone: " + timeZone);
     }
 
 
